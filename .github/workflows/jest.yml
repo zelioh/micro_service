@@ -7,10 +7,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Launch Jest
-        uses: mattallty/jest-github-action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+      - uses: actions/checkout@v1
+      - name: Launch Jest on test.js
+        uses: stefanoeb/jest-action@1.0.3
         with:
-          test-command: "npm run test"
-          working-directory: "test"
+          jestArgs: test/*.js --coverage
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage-report
+          path: coverage/*
