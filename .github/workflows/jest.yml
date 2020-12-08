@@ -7,8 +7,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
       - name: Launch Jest
-        uses: stefanoeb/jest-action@1.0.3
+        uses: mattallty/jest-github-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          jestArgs: test/test.js
+          test-command: "npm run test"
+          working-directory: "test"
