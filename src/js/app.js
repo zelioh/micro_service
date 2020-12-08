@@ -1,9 +1,19 @@
-class Welcome extends React.Component {
-    render() {
-        return "world !!!";
+export class Head extends React.Component
+{
+    constructor(props) {
+        super(props);
+    }
+
+    render()
+    {
+        return (
+            <div>Amazon like !</div>
+        );
     }
 }
-
-function Welcome_render() {
-    document.getElementById("root").innerText += Welcome.render();
+if (document.getElementById('root')) {
+    ReactDOM.render(
+        <Head/>,
+        document.getElementById('root')
+    );
 }
