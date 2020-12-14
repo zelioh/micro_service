@@ -8,6 +8,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+      - name: Install npm dependencies
+        run: npm install
       - name: Launch Jest on test.js
         uses: stefanoeb/jest-action@1.0.3
         with:
@@ -17,3 +19,7 @@ jobs:
         with:
           name: code-coverage-report
           path: coverage/*
+      - name: Upload coverage result to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.COVECODE_TOKEN }}
