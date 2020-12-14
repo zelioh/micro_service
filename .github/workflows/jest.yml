@@ -13,7 +13,7 @@ jobs:
       - name: Launch Jest on test.js
         uses: stefanoeb/jest-action@1.0.3
         with:
-          jestArgs: test/*.js --coverage
+          jestArgs: test/*.js --ci --coverage
       - name: Archive code coverage results
         uses: actions/upload-artifact@v2
         with:
