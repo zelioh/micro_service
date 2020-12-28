@@ -39,7 +39,7 @@ module.exports = {
        "text",
     //   "lcov",
     //   "clover"
-    //    "html"
+        "html"
     ],
 
     // An object that configures minimum threshold enforcement for coverage results

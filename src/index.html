@@ -16,6 +16,18 @@
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
 
     <script data-plugins="transform-es2015-modules-umd" type="text/babel" src="js/app.js" defer></script>
+    <script data-plugins="transform-es2015-modules-umd" type="text/babel">
+        import {Head} from 'js/app';
+
+        $(document).ready(() => {
+            if (document.getElementById('root')) {
+                ReactDOM.render(
+                    <Head/>,
+                    document.getElementById('root')
+                );
+            }
+        });
+    </script>
 </head>
 <body>
     <h1>hello</h1>

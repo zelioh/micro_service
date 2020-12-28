@@ -11,9 +11,3 @@ export class Head extends React.Component
         );
     }
 }
-if (document.getElementById('root')) {
-    ReactDOM.render(
-        <Head/>,
-        document.getElementById('root')
-    );
-}
