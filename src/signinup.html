@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+   	<meta charset="utf-8">
+	<title></title>
+   	<meta name="author" content="Rudy Quinternet">
+    <link rel="icon" href="https://music.youtube.com/img/favicon_96.png" >
+
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+
+
+    <style type="text/css">
+    	
+
+
+.formholder
+{
+	width: 500px;
+	border-radius: 10px;
+	overflow: hidden;
+	padding: 55px 55px 35px 55px;
+	background: #9152f8;
+	background: -webkit-linear-gradient(top, #7579ff, #b224ef);
+	margin: 75px auto;
+	transition: transform linear 0.5s;
+	transform: rotateY(0deg);
+	transform-style: preserve-3d;
+}
+
+.formholder p
+{
+	color: white;
+	text-align: center;
+	font-size: 2em;
+}
+
+.formbtn
+{
+	background: -webkit-linear-gradient(bottom, #ffffff, #ffffff);
+	color: #555555;
+	padding: 10px 30px;
+	border-radius: 25px;
+	display: block;
+	margin: 40px 10px;
+	border: none;
+	transition: color 0.4s, background 0.4s;
+}
+
+.formbtn:hover {
+    cursor: pointer;
+	color: white;
+	background: -webkit-linear-gradient(bottom, #7579ff, #b224ef);
+	transition-timing-function: ease;
+	transition: color 0.4s, background 0.4s;
+}
+
+.profinput
+{
+	background: rgba(0,0,0,0);
+	border:none;
+	border-bottom: 2px solid rgba(255,255,255,0.3);
+	border-radius: 0px;
+	color: white;
+	font-size: 1em;
+	width: 100%;
+	margin: 10px auto;
+	
+}
+
+
+.rotacache
+{
+	transition: transform linear 0.5s;
+	transform: rotateY(-90deg);
+}
+
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+
+
+    </style>
+</head>
+<body onload="renderProfile()">
+
+<div id="Profile_Section">
+	
+
+</div>
+
+</body>
+<script type="text/babel">
+
+
+
+class Profile extends React.Component
+{
+	render() 
+	{
+		return (
+			<div>
+			<div id="formholder" className="formholder">
+			<p id="frontp1">Log In</p>
+			<input type="text" id="frontemail" class="profinput" placeholder="Email"/>
+			<input type="password" id="frontpassword" class="profinput" placeholder="Password"/>
+			<button onClick={() => flip("back")} id="frontb1" className="formbtn" style={{float: "left"}}>Sign-up</button>
+			<button onClick={() => login()} id="frontb2" className="formbtn" style={{float: "right"}}>Log-in</button>
+
+			<p id="frontp2" style={{cursor: "pointer", color:"#555555", width:"100%", fontSize:"1em"}}>Forgot Password?</p>
+
+
+
+			<p style={{display:"none"}} id="backp">Sign-up</p>
+			<input style={{display:"none"}} type="text" id="backemail" class="profinput" placeholder="Email"/>
+			<input style={{display:"none"}} type="password" id="backpass1" class="profinput" placeholder="Password"/>
+			<input style={{display:"none"}} type="password" id="backpass2" class="profinput" placeholder="repeat Password"/>
+			<input style={{display:"none"}} type="text" id="backan" class="profinput" placeholder="Account-name"/>
+			<input style={{display:"none"}} type="text" id="backadress" class="profinput" placeholder="Adress"/>
+
+			<button onClick={() => flip("front")} id="backb1" className="formbtn" style={{float: "left", display:"none"}}>Log-in</button>
+			<button onClick={() => signup("back")} id="backb2" className="formbtn" style={{float: "right", display:"none"}}>Sign-up</button>
+
+			</div>
+			</div>			
+			);
+}
+}
+
+
+
+function flip(toface) {
+	document.getElementById('formholder').className += " rotacache";
+	setTimeout(function(){ 
+
+		if (toface == 'front') {
+			document.getElementById('frontpassword').style.display = 'block';
+			document.getElementById('frontemail').style.display = 'block';
+			document.getElementById('frontp1').style.display = 'block';
+			document.getElementById('frontb1').style.display = 'block';
+			document.getElementById('frontb2').style.display = 'block';
+			document.getElementById('frontp2').style.display = 'block';
+
+			document.getElementById('backemail').style.display = 'none';
+			document.getElementById('backpass1').style.display = 'none';
+			document.getElementById('backpass2').style.display = 'none';
+			document.getElementById('backadress').style.display = 'none';
+			document.getElementById('backan').style.display = 'none';
+			document.getElementById('backb1').style.display = 'none';
+			document.getElementById('backb2').style.display = 'none';
+			document.getElementById('backp').style.display = 'none';
+		}
+
+		if (toface == 'back') {
+			document.getElementById('frontpassword').style.display = 'none';
+			document.getElementById('frontemail').style.display = 'none';
+			document.getElementById('frontp1').style.display = 'none';
+			document.getElementById('frontb1').style.display = 'none';
+			document.getElementById('frontb2').style.display = 'none';
+			document.getElementById('frontp2').style.display = 'none';
+
+			document.getElementById('backemail').style.display = 'block';
+			document.getElementById('backpass1').style.display = 'block';
+			document.getElementById('backpass2').style.display = 'block';
+			document.getElementById('backadress').style.display = 'block';
+			document.getElementById('backan').style.display = 'block';
+			document.getElementById('backb1').style.display = 'block';
+			document.getElementById('backb2').style.display = 'block';
+			document.getElementById('backp').style.display = 'block';
+		}
+
+		document.getElementById('formholder').className = document.getElementById('formholder').className.replace(' rotacache',''); 
+	}, 500);
+
+}
+
+
+	function renderProfile(argument) {
+		ReactDOM.render(<Profile />,document.getElementById('Profile_Section'));
+	}
+	
+</script>
+</html>
