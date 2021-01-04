@@ -1,11 +1,33 @@
 import React from 'react';
-import {test} from "@jest/globals";
+import {describe, it, test} from "@jest/globals";
 import renderer from 'react-test-renderer';
-import {Head} from '../src/js/app';
+import {Navbar} from '../src/app';
+import {Body} from '../src/app';
+import {Footer} from '../src/app';
+import { configure } from 'enzyme';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import { mount } from "enzyme";
 
-test('Render function of Head must be "Amazon like !"', () => {
-    const component = renderer.create(
-        <Head />
-    );
-    expect(component.root.findByType('div').children).toEqual(['Amazon like !']);
+configure({ adapter: new Adapter() });
+
+describe('Tests on render of class', () => {
+    it('Render function of Navbar must set h1 to "AMAZOFF"', () => {
+        const component = renderer.create(
+            <Navbar />
+        );
+        expect(component.root.findByType('h1').children).toEqual(['AMAZOFF']);
+    });
+
+    it('Render function of Body must set h5 to id set in constructor', () => {
+        const component = renderer.create(
+            <Body id={5} />
+        );
+        expect(component.root.findByType('h5').children).toEqual(['5']);
+    });
+
+    it('Render function of Footer must set 5 icon in social network', () => {
+        const wrapper = mount(<Footer />);
+        const socialNetworkWrapper = wrapper.find('.social-network').children();
+        expect(socialNetworkWrapper.length).toBe(5);
+    });
 });

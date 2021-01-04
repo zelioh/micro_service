@@ -25,12 +25,59 @@
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
    
-    <script type="text/babel" src="app.js"></script>
+    <script data-plugins="transform-es2015-modules-umd" type="text/babel" src="app.js" defer></script>
+    <script data-plugins="transform-es2015-modules-umd" type="text/babel">
+        import {Navbar} from "./app";
+        import {Body} from "./app";
+        import {Footer} from "./app";
+
+        $(document).ready(()=>{
+            function ol() {
+                loadNavbar();
+                loadBody();
+                loadFooter();
+            }
+
+            function loadNavbar() {
+                ReactDOM.render(
+                    <Navbar />,
+                    document.getElementById('navbar')
+                );
+            }
+
+            function loadBody(f) {
+
+                for (let i = 0; i < 4; i++) {
+                    const tmp = document.createElement("div");
+                    tmp.id = i;
+                    tmp.classList.add('col-md-4');
+                    document.getElementById('body').appendChild(tmp)
+                }
+
+                for (let z = 0; z < 4; z++) {
+                    ReactDOM.render(
+                        <Body id={z}/>,
+                        document.getElementById(z)
+                    );
+                }
+
+            }
+
+            function loadFooter() {
+                ReactDOM.render(
+                    <Footer/>,
+                    document.getElementById('footer')
+                );
+            }
+
+            ol();
+        });
+    </script>
 
     <link rel="stylesheet" href="footer.css"></link> 
     
 </head>
-<body onload="ol();">
+<body>
     <div id="navbar"></div>
     <div class="album py-5">
         <div class="container">
