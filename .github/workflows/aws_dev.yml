@@ -1,4 +1,4 @@
-name: Update master
+name: Update dev
 
 on:
   push:
