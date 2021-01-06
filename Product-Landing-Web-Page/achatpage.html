@@ -1,0 +1,169 @@
+<html>
+  
+  <script src="jquery-3.5.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+    <meta charset="utf-8">
+
+  </head>
+
+  <body>
+    <div id="heading">
+      <header id="header">
+        <nav>
+          <a href="https://microservices-tech.s3.eu-west-3.amazonaws.com/index.html">
+        <img
+          id="header-img"
+          src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png"
+          alt="Logo"
+          href="index.html"
+        />
+      </a>
+      <section id="signin">
+      </section>
+      
+        </nav>
+      </header>
+
+      <section id="product">
+
+
+        <div id="imgdad" style = "position:relative;right: 350px" class="imgdad"> 
+        </div>
+
+
+        <button id="myBtn" class="myBtn">achat</button>
+        <div id="myModal" class="modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Votre achat a été valider</p>
+          </div>
+        </div>
+
+
+        <div id="product-div-Name"></div>
+
+
+        <div id="product-div-Price"></div>
+
+
+
+        <p id="product-div-About">
+
+        </div>
+        <div id="product-div-Stcok"></div>
+        <div id="product-div-Desc"></div>
+
+        <br>
+        <div id="product-div-Comment">
+          
+
+          
+        </div>
+
+      </section>
+
+
+      <footer>
+        <ul>
+          <li class="footer-li"><a class="footer-a" href="#">Privacy</a></li>
+          <li class="footer-li"><a class="footer-a" href="#">Terms</a></li>
+          <li class="footer-li"><a class="footer-a" href="#">Contact</a></li>
+        </ul>
+      </footer>
+    </div>
+  </body>
+
+
+
+
+        <script>
+         
+        var modal = document.getElementById("myModal");
+        
+         var btn = document.getElementById("myBtn");
+         
+         var span = document.getElementsByClassName("close")[0];
+         
+         btn.onclick = function() {
+           modal.style.display = "block";
+          }
+          
+          span.onclick = function() {
+            modal.style.display = "none";
+          }
+          
+          window.onclick = function(event) {
+            if (event.target == modal) {
+              modal.style.display = "none";
+            }
+          }
+
+          function sendabout(about) {
+             
+             
+            }
+         
+
+        $.ajax({
+          url: "https://55dald7ea1.execute-api.eu-west-3.amazonaws.com/dev/get-article",
+          type: "get", //send it through get method
+          success: function(response) {
+            if (response) {
+
+
+              $('#product-div-Name').html(response.Name);
+              $('#product-div-Price').html(response.Price);
+
+             var about =  response.About; // un p par string
+
+              $('#product-div-Stcok').html(response.Stock);
+
+              $('#product-div-Desc').html(response.Desc);
+              
+
+              $('#product-div-Comment').html(JSON.stringify (response.Comms)); //une div par item, un p par string dans l'item,  pop une img étoile jaune par point de note et une blanche par point restant, c'est noté sur 5
+
+
+              var convert = about.toString()
+
+              console.log(convert)
+  
+              $('#product-div-About').html(convert.split(","))
+
+
+              var imgdad = document.getElementById("imgdad");
+
+              for (var i = 0; i < response.Pics.length; i++) {
+                // response.Pics[i]
+                var newimg = document.createElement("img");
+                newimg.src = response.Pics[i];
+                imgdad.appendChild(newimg);
+              }
+
+            } else {
+              alert('nop')
+
+            }
+            //Do Something
+          },
+          error: function(xhr) {
+            //Do Something to handle error
+          }
+        });
+
+
+       
+
+      </script>
+
+</html>
