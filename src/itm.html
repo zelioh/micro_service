@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="author" content="Rudy Quinternet & le bon bro jesuyon ">
+	<link rel="icon" href="https://play-lh.googleusercontent.com/A0j5qdwpBP_9oYMX3TGbghtBQKGqjjWpBHwiX1k95zU33RxOJo8ZfqGFuuI2zJOtFwA" >
+
+	<style type="text/css">
+		*
+		{
+			margin: 0;
+			padding: 0;
+
+		}	
+
+		#mid
+		{
+			background: white;
+			padding: 50px 0;
+		}
+
+		.navbar
+		{
+			background: #232f3e;
+			height: 100px;
+			display: grid;
+			grid-template-columns: 1fr 4fr 1fr;
+		}
+
+		footer
+		{
+			height: 200px;
+			background: #232f3e;
+			width: 100%;
+		}
+
+		.imgdad
+		{
+			width: fit-content;
+			margin: 50px auto;
+		}
+
+		.dsholder
+		{
+			display: grid;
+			grid-template-columns: 9fr 3fr ;
+			margin: 50px 100px;
+		}
+
+		.commholder
+		{
+			margin: 50px;
+		}
+
+		.starholder
+		{
+			width: 20px;
+			height: 20px;
+			margin-left: 10px;
+		}
+
+		p
+		{
+			margin: 10px;
+		}
+
+		.tmpimg 
+		{
+			transition: transform .2s; /* Animation */
+			height: 200px;
+			margin: 20px;
+		}
+
+		.tmpimg:hover 
+		{
+			transform: scale(2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+		}
+
+		@media only screen and (max-width: 600px) {
+			body {
+				background-color: lightblue;
+			}
+		}
+
+		h1
+		{
+			font-family: sans-serif;
+			font-variant: small-caps slashed-zero;
+			margin: 30px 125px;
+			text-align: center;
+		}
+
+		h2
+		{
+			text-align: center;
+			margin: 30px 125px;
+		}
+
+		li
+		{
+			font-family: sans-serif;
+			font-variant: small-caps slashed-zero;
+		}
+
+		body 
+		{
+			background: #232f3e;
+		}
+
+
+		.buybtn {
+			box-shadow: 0px 1px 0px 0px #fff6af;
+			background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+			background-color:#ffec64;
+			border-radius:6px;
+			border:1px solid #ffaa22;
+			display: block;
+			cursor:pointer;
+			color:#333333;
+			font-family:Arial;
+			font-size:30px;
+			font-weight:bold;
+			padding:12px 48px;
+			text-decoration:none;
+			text-shadow:0px 1px 0px #ffee66;
+			margin: auto;
+		}
+		.buybtn:hover {
+			background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+			background-color:#ffab23;
+		}
+		.buybtn:active {
+			position:relative;
+			top:1px;
+		}
+
+
+
+	</style>
+
+</head>
+<body onload="ol();">
+
+	<div id="top" class="navbar">
+		<div style="content: url(https://play-lh.googleusercontent.com/A0j5qdwpBP_9oYMX3TGbghtBQKGqjjWpBHwiX1k95zU33RxOJo8ZfqGFuuI2zJOtFwA); height: 100%; cursor: pointer;" onclick="goto('index.html');"></div>
+
+		<div id="Profilesection">
+
+		</div>
+	</div>
+
+	<div id="mid">
+
+		<div id="itmDaddy">
+			<h1 id="rota">Tu me laisse 2 minute? je charge là</h1>
+
+
+		</div>
+
+
+	</div>
+
+	<footer>
+
+
+	</footer>
+
+</body>
+<script>
+
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+
+
+
+	var fs = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Star_full.svg/754px-Star_full.svg.png"
+	var es = "https://cdn.onlinewebfonts.com/svg/img_251809.png"
+
+
+	function goto(where) {
+		window.location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/')+1) + where
+	}
+
+	function ol() {
+		const itm = urlParams.get('v')
+
+		console.log(itm);
+
+		if (itm) 
+		{
+			fetch('https://55dald7ea1.execute-api.eu-west-3.amazonaws.com/dev/get-article?v=' +itm)
+			.then(response => response.json())
+			.then(function(r) {
+				if (r.errorMessage) document.getElementById('rota').innerHTML = "tu te foutrais pas un tout petit peu de ma gue**e par hasard?";
+
+				else
+				{
+					console.log(r)
+					document.getElementById('itmDaddy').innerHTML = "";
+					document.title = r.Name;
+
+
+//////////////////////// Imgs
+var imgdad = document.createElement("div");
+imgdad.classList.add("imgdad");
+
+for (var i = 0; i < r.Pics.length; i++) {
+
+	var tmpimg = document.createElement("img");
+	tmpimg.classList.add("tmpimg");
+
+	tmpimg.src = r.Pics[i]
+	imgdad.appendChild(tmpimg);
+}
+
+document.getElementById('itmDaddy').appendChild(imgdad);
+//////////////////////// Imgs
+
+
+//////////////////////// Name
+var nameh1 = document.createElement("h1");
+nameh1.innerHTML = r.Name;
+document.getElementById('itmDaddy').appendChild(nameh1);
+//////////////////////// Name
+
+
+//////////////////////// Price
+var priceh1 = document.createElement("h2");
+priceh1.innerHTML = r.Price/100 + '€' + "<br>";
+
+var moyenne = 0;
+for (var i = 0; i < r.Comms.length; i++) 
+	moyenne += r.Comms[i].Note
+moyenne = moyenne / r.Comms.length;
+
+console.log(moyenne)
+
+var shold1 = document.createElement("img");
+shold1.classList.add("starholder");
+shold1.src = moyenne >= 1 ? fs : es;
+var shold2 = document.createElement("img");
+shold2.classList.add("starholder");
+shold2.src = moyenne >= 2 ? fs : es;
+var shold3 = document.createElement("img");
+shold3.classList.add("starholder");
+shold3.src = moyenne >= 3 ? fs : es;
+var shold4 = document.createElement("img");
+shold4.classList.add("starholder");
+shold4.src = moyenne >= 4 ? fs : es;
+var shold5 = document.createElement("img");
+shold5.classList.add("starholder");
+shold5.src = moyenne >= 5 ? fs : es;
+
+priceh1.appendChild(shold1);
+priceh1.appendChild(shold2);
+priceh1.appendChild(shold3);
+priceh1.appendChild(shold4);
+priceh1.appendChild(shold5);
+
+document.getElementById('itmDaddy').appendChild(priceh1);
+//////////////////////// Note
+
+
+
+
+
+
+var dsholder = document.createElement("div");
+dsholder.classList.add("dsholder");
+//////////////////////// Desc
+var descdad = document.createElement("p");
+descdad.innerHTML = r.Desc;
+dsholder.appendChild(descdad);
+//////////////////////// Desc
+
+//////////////////////// About
+var abdad = document.createElement("ul");
+abdad.classList.add("abdad");
+
+for (var i = 0; i < r.About.length; i++) {
+
+	var tmpli = document.createElement("li");
+	tmpli.innerHTML = r.About[i]
+	abdad.appendChild(tmpli);
+}
+
+dsholder.appendChild(abdad);
+//////////////////////// About
+document.getElementById('itmDaddy').appendChild(dsholder);
+
+
+
+
+//////////////////////// Comms
+var commsdad = document.createElement("div");
+
+for (var i = 0; i < r.Comms.length; i++) {
+	var commholder = document.createElement("div");
+	commholder.classList.add("commholder");
+
+	var from = document.createElement("p");
+	var body = document.createElement("p");
+	var date = document.createElement("p");
+
+	from.innerHTML = r.Comms[i].From
+
+	var utcSeconds = r.Comms[i].Date;
+	var d = new Date(0); 
+	d.setUTCSeconds(utcSeconds);
+	date.innerHTML = "le " + d.toLocaleString();
+
+
+	var starholder1 = document.createElement("img");
+	starholder1.classList.add("starholder");
+	starholder1.src = r.Comms[i].Note >= 1 ? fs : es;
+	var starholder2 = document.createElement("img");
+	starholder2.classList.add("starholder");
+	starholder2.src = r.Comms[i].Note >= 2 ? fs : es;
+	var starholder3 = document.createElement("img");
+	starholder3.classList.add("starholder");
+	starholder3.src = r.Comms[i].Note >= 3 ? fs : es;
+	var starholder4 = document.createElement("img");
+	starholder4.classList.add("starholder");
+	starholder4.src = r.Comms[i].Note >= 4 ? fs : es;
+	var starholder5 = document.createElement("img");
+	starholder5.classList.add("starholder");
+	starholder5.src = r.Comms[i].Note >= 5 ? fs : es;
+
+
+	body.innerHTML = r.Comms[i].Body
+
+	commholder.appendChild(from);
+	commholder.appendChild(date);
+
+	commholder.appendChild(starholder1);
+	commholder.appendChild(starholder2);
+	commholder.appendChild(starholder3);
+	commholder.appendChild(starholder4);
+	commholder.appendChild(starholder5);
+
+	commholder.appendChild(body);
+	commsdad.appendChild(commholder);
+}
+
+
+document.getElementById('itmDaddy').appendChild(commsdad);
+//////////////////////// Comms
+
+
+
+//////////////////////// Buy
+var buydad = document.createElement("div");
+buydad.classList.add("buydad");
+var buybtn = document.createElement("button");
+buybtn.classList.add("buybtn");
+buybtn.innerHTML = "ACHETER";
+buybtn.onclick = function(){jachaite();};
+
+
+buydad.appendChild(buybtn);						
+document.getElementById('itmDaddy').appendChild(buydad);						
+
+//////////////////////// Buy
+
+
+
+
+}
+})
+
+
+}
+else 
+{
+	document.getElementById('rota').innerHTML = "nan mais choisis un item aussi, t\'abuses là..."
+}
+}
+
+function jachaite() {
+ if (confirm("t sur tu veux acheter ca?")) 
+ {
+    if (me) {
+
+    fetch()
+    }
+    else {
+    	alert("faut te connecter si tu veux acheter");
+    }
+
+
+
+
+
+
+
+
+
+
+
+  } else {
+    return false;
+  }
+}
+
+</script>
+</html>

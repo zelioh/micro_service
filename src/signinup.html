@@ -1,191 +1,288 @@
 <!DOCTYPE html>
 <html>
 <head>
-   	<meta charset="utf-8">
-	<title></title>
-   	<meta name="author" content="Rudy Quinternet">
-    <link rel="icon" href="https://music.youtube.com/img/favicon_96.png" >
-
+	<meta charset="utf-8">
+	<title>Profile</title>
+	<meta name="author" content="Rudy Quinternet">
+	<link rel="icon" href="https://play-lh.googleusercontent.com/A0j5qdwpBP_9oYMX3TGbghtBQKGqjjWpBHwiX1k95zU33RxOJo8ZfqGFuuI2zJOtFwA" >
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-
 
 	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 	<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
 	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
 
+	<style type="text/css">
 
-    <style type="text/css">
-    	
+		.formholder
+		{
+			width: 500px;
+			border-radius: 10px;
+			overflow: hidden;
+			padding: 55px 55px 35px 55px;
+			background: #9152f8;
+			background: -webkit-linear-gradient(top, #7579ff, #b224ef);
+			margin: 75px auto;
+			transition: transform linear 0.5s;
+			transform: rotateY(0deg);
+			transform-style: preserve-3d;
+		}
 
+		.formholder p
+		{
+			color: white;
+			text-align: center;
+			font-size: 2em;
+		}
 
-.formholder
-{
-	width: 500px;
-	border-radius: 10px;
-	overflow: hidden;
-	padding: 55px 55px 35px 55px;
-	background: #9152f8;
-	background: -webkit-linear-gradient(top, #7579ff, #b224ef);
-	margin: 75px auto;
-	transition: transform linear 0.5s;
-	transform: rotateY(0deg);
-	transform-style: preserve-3d;
-}
+		.formbtn
+		{
+			background: -webkit-linear-gradient(bottom, #ffffff, #ffffff);
+			color: #555555;
+			padding: 10px 30px;
+			border-radius: 25px;
+			display: block;
+			margin: 40px 10px;
+			border: none;
+			transition: color 0.4s, background 0.4s;
+		}
 
-.formholder p
-{
-	color: white;
-	text-align: center;
-	font-size: 2em;
-}
+		.formbtn:hover {
+			cursor: pointer;
+			color: white;
+			background: -webkit-linear-gradient(bottom, #7579ff, #b224ef);
+			transition-timing-function: ease;
+			transition: color 0.4s, background 0.4s;
+		}
 
-.formbtn
-{
-	background: -webkit-linear-gradient(bottom, #ffffff, #ffffff);
-	color: #555555;
-	padding: 10px 30px;
-	border-radius: 25px;
-	display: block;
-	margin: 40px 10px;
-	border: none;
-	transition: color 0.4s, background 0.4s;
-}
-
-.formbtn:hover {
-    cursor: pointer;
-	color: white;
-	background: -webkit-linear-gradient(bottom, #7579ff, #b224ef);
-	transition-timing-function: ease;
-	transition: color 0.4s, background 0.4s;
-}
-
-.profinput
-{
-	background: rgba(0,0,0,0);
-	border:none;
-	border-bottom: 2px solid rgba(255,255,255,0.3);
-	border-radius: 0px;
-	color: white;
-	font-size: 1em;
-	width: 100%;
-	margin: 10px auto;
-	
-}
+		.profinput
+		{
+			background: rgba(0,0,0,0);
+			border:none;
+			border-bottom: 2px solid rgba(255,255,255,0.3);
+			border-radius: 0px;
+			color: white;
+			font-size: 1em;
+			width: 100%;
+			margin: 10px auto;
+			
+		}
 
 
-.rotacache
-{
-	transition: transform linear 0.5s;
-	transform: rotateY(-90deg);
-}
+		.rotacache
+		{
+			transition: transform linear 0.5s;
+			transform: rotateY(-90deg);
+		}
 
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: white;
-  opacity: 1; /* Firefox */
-}
+		::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+			color: white;
+			opacity: 1; /* Firefox */
+		}
 
 
 
-    </style>
+	</style>
 </head>
 <body onload="renderProfile()">
 
-<div id="Profile_Section">
-	
+	<div id="Profile_Section">
+		
 
-</div>
+	</div>
 
 </body>
 <script type="text/babel">
 
+	var me = getCookie('Amazoff');
+	if (me != "" && me != "undefined") {me = JSON.parse(me);} 
 
 
-class Profile extends React.Component
-{
-	render() 
+	class Connected extends React.Component
 	{
-		return (
-			<div>
-			<div id="formholder" className="formholder">
-			<p id="frontp1">Log In</p>
-			<input type="text" id="frontemail" class="profinput" placeholder="Email"/>
-			<input type="password" id="frontpassword" class="profinput" placeholder="Password"/>
-			<button onClick={() => flip("back")} id="frontb1" className="formbtn" style={{float: "left"}}>Sign-up</button>
-			<button onClick={() => login()} id="frontb2" className="formbtn" style={{float: "right"}}>Log-in</button>
 
-			<p id="frontp2" style={{cursor: "pointer", color:"#555555", width:"100%", fontSize:"1em"}}>Forgot Password?</p>
-
-
-
-			<p style={{display:"none"}} id="backp">Sign-up</p>
-			<input style={{display:"none"}} type="text" id="backemail" class="profinput" placeholder="Email"/>
-			<input style={{display:"none"}} type="password" id="backpass1" class="profinput" placeholder="Password"/>
-			<input style={{display:"none"}} type="password" id="backpass2" class="profinput" placeholder="repeat Password"/>
-			<input style={{display:"none"}} type="text" id="backan" class="profinput" placeholder="Account-name"/>
-			<input style={{display:"none"}} type="text" id="backadress" class="profinput" placeholder="Adress"/>
-
-			<button onClick={() => flip("front")} id="backb1" className="formbtn" style={{float: "left", display:"none"}}>Log-in</button>
-			<button onClick={() => signup("back")} id="backb2" className="formbtn" style={{float: "right", display:"none"}}>Sign-up</button>
-
-			</div>
+		render() 
+		{
+			return (
+			<div className="connected">
+				<p style={{textAlign: "left", fontSize: "1.5em", borderBottom: "1px solid red"}} id="accname">accname : {me["accname"].S}</p>
+				<p style={{textAlign: "left", fontSize: "1.5em", borderBottom: "1px solid red"}} id="email">email : {me["email"].S}</p>
+				<p style={{textAlign: "left", fontSize: "1.5em", borderBottom: "1px solid red"}} id="address">address : {me["address"].S}</p>
+				<p style={{textAlign: "left", fontSize: "1.5em", borderBottom: "1px solid red"}} id="coins">coins : {me["coins"].N}</p>
+				<br></br>
+				<button onClick={() => logout()} style={{color:"white", padding:"10px", borderRadius:"10px", margin: "auto", display:"block", backgroundColor:"#3f0d12", backgroundImage: "linear-gradient(315deg, #3f0d12 0%, #a71d31 74%)"}}>Log-out</button>
+				<br></br>
 			</div>			
 			);
-}
-}
+		}
+	}
+
+	class Profile extends React.Component
+	{
+		render() 
+		{
+			return (
+			<div>
+				<div id="formholder" className="formholder">
+					<p id="frontp1">Log In</p>
+					<input type="text" id="frontemail" class="profinput" placeholder="Email"/>
+					<input type="password" id="frontpassword" class="profinput" placeholder="Password"/>
+					<button onClick={() => flip("back")} id="frontb1" className="formbtn" style={{float: "left"}}>Sign-up</button>
+					<button onClick={() => login()} id="frontb2" className="formbtn" style={{float: "right"}}>Log-in</button>
+
+					<p id="frontp2" style={{cursor: "pointer", color:"#555555", width:"100%", fontSize:"1em"}}>Forgot Password?</p>
 
 
 
-function flip(toface) {
+					<p style={{display:"none"}} id="backp">Sign-up</p>
+					<input style={{display:"none"}} type="text" id="backemail" class="profinput" placeholder="Email"/>
+					<input style={{display:"none"}} type="password" id="backpass1" class="profinput" placeholder="Password"/>
+					<input style={{display:"none"}} type="password" id="backpass2" class="profinput" placeholder="repeat Password"/>
+					<input style={{display:"none"}} type="text" id="backan" class="profinput" placeholder="Account-name"/>
+					<input style={{display:"none"}} type="text" id="backaddress" class="profinput" placeholder="Address"/>
+
+					<button onClick={() => flip("front")} id="backb1" className="formbtn" style={{float: "left", display:"none"}}>Log-in</button>
+					<button onClick={() => signup("back")} id="backb2" className="formbtn" style={{float: "right", display:"none"}}>Sign-up</button>
+
+				</div>
+			</div>			
+			);
+		}
+	}
+
+
+
+	function flip(toface) {
 	document.getElementById('formholder').className += " rotacache";
 	setTimeout(function(){ 
 
-		if (toface == 'front') {
-			document.getElementById('frontpassword').style.display = 'block';
-			document.getElementById('frontemail').style.display = 'block';
-			document.getElementById('frontp1').style.display = 'block';
-			document.getElementById('frontb1').style.display = 'block';
-			document.getElementById('frontb2').style.display = 'block';
-			document.getElementById('frontp2').style.display = 'block';
+	if (toface == 'front') {
+	document.getElementById('frontpassword').style.display = 'block';
+	document.getElementById('frontemail').style.display = 'block';
+	document.getElementById('frontp1').style.display = 'block';
+	document.getElementById('frontb1').style.display = 'block';
+	document.getElementById('frontb2').style.display = 'block';
+	document.getElementById('frontp2').style.display = 'block';
 
-			document.getElementById('backemail').style.display = 'none';
-			document.getElementById('backpass1').style.display = 'none';
-			document.getElementById('backpass2').style.display = 'none';
-			document.getElementById('backadress').style.display = 'none';
-			document.getElementById('backan').style.display = 'none';
-			document.getElementById('backb1').style.display = 'none';
-			document.getElementById('backb2').style.display = 'none';
-			document.getElementById('backp').style.display = 'none';
-		}
+	document.getElementById('backemail').style.display = 'none';
+	document.getElementById('backpass1').style.display = 'none';
+	document.getElementById('backpass2').style.display = 'none';
+	document.getElementById('backaddress').style.display = 'none';
+	document.getElementById('backan').style.display = 'none';
+	document.getElementById('backb1').style.display = 'none';
+	document.getElementById('backb2').style.display = 'none';
+	document.getElementById('backp').style.display = 'none';
+}
 
-		if (toface == 'back') {
-			document.getElementById('frontpassword').style.display = 'none';
-			document.getElementById('frontemail').style.display = 'none';
-			document.getElementById('frontp1').style.display = 'none';
-			document.getElementById('frontb1').style.display = 'none';
-			document.getElementById('frontb2').style.display = 'none';
-			document.getElementById('frontp2').style.display = 'none';
+if (toface == 'back') {
+document.getElementById('frontpassword').style.display = 'none';
+document.getElementById('frontemail').style.display = 'none';
+document.getElementById('frontp1').style.display = 'none';
+document.getElementById('frontb1').style.display = 'none';
+document.getElementById('frontb2').style.display = 'none';
+document.getElementById('frontp2').style.display = 'none';
 
-			document.getElementById('backemail').style.display = 'block';
-			document.getElementById('backpass1').style.display = 'block';
-			document.getElementById('backpass2').style.display = 'block';
-			document.getElementById('backadress').style.display = 'block';
-			document.getElementById('backan').style.display = 'block';
-			document.getElementById('backb1').style.display = 'block';
-			document.getElementById('backb2').style.display = 'block';
-			document.getElementById('backp').style.display = 'block';
-		}
+document.getElementById('backemail').style.display = 'block';
+document.getElementById('backpass1').style.display = 'block';
+document.getElementById('backpass2').style.display = 'block';
+document.getElementById('backaddress').style.display = 'block';
+document.getElementById('backan').style.display = 'block';
+document.getElementById('backb1').style.display = 'block';
+document.getElementById('backb2').style.display = 'block';
+document.getElementById('backp').style.display = 'block';
+}
 
-		document.getElementById('formholder').className = document.getElementById('formholder').className.replace(' rotacache',''); 
-	}, 500);
+document.getElementById('formholder').className = document.getElementById('formholder').className.replace(' rotacache',''); 
+}, 500);
 
 }
 
 
-	function renderProfile(argument) {
-		ReactDOM.render(<Profile />,document.getElementById('Profile_Section'));
-	}
-	
+function renderProfile(argument) {
+if (me == "")
+ReactDOM.render(<Profile />,document.getElementById('Profile_Section'));
+else
+ReactDOM.render(<Connected />,document.getElementById('Profile_Section'));
+}
+
+
+
+function setCookie(cname, cvalue, exdays) {
+var d = new Date();
+d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+var expires = "expires="+d.toUTCString();
+document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+var name = cname + "=";
+var ca = document.cookie.split(';');
+for(var i = 0; i < ca.length; i++) {
+var c = ca[i];
+while (c.charAt(0) == ' ') {
+c = c.substring(1);
+}
+if (c.indexOf(name) == 0) {
+return c.substring(name.length, c.length);
+}
+}
+return "";
+}
+
+function logout() {
+setCookie('Amazoff', "", 0);
+document.location.reload(true);
+}
+
+
+function signup() {
+var email = document.getElementById('backemail').value;
+var pass1 = document.getElementById('backpass1').value;
+var pass2 = document.getElementById('backpass2').value;
+var an = document.getElementById('backan').value;
+var address = document.getElementById('backaddress').value;
+
+if (email == "" || pass1 == "" || pass2 == "" || an == "" || address == "")
+return alert("remplis tous les champs stp")
+
+if (pass1 != pass2)
+return alert("tu sais que les 2 champs Password sont censés être les memes hein?")
+
+console.log(email,pass1,pass2,an,address);
+
+var payload = {
+'email' : email,
+'pass' : pass1,
+'an' : an,
+'address' : address,
+};
+var form = JSON.stringify(payload);
+
+fetch("https://55dald7ea1.execute-api.eu-west-3.amazonaws.com/dev/signup", {method:"POST", body:form})
+.then(function(res) {console.log(res); return res.json();})
+.then(function(res) {console.log(res); if (res == "email_taken") {alert("j\'crois que t\'as deja un compte, ou alors quelqu\'un d\'autre utilise ton email (et ca c\'est chaud)")} else {setCookie('Amazoff', JSON.stringify(res), 30);document.location.reload(true)} })
+}
+
+function login() {
+var password = document.getElementById('frontpassword').value;
+var email = document.getElementById('frontemail').value;
+
+console.log(password,email);
+
+var payload = {
+'password' : password,
+'email' : email,
+};
+var form = JSON.stringify(payload);
+
+fetch("https://55dald7ea1.execute-api.eu-west-3.amazonaws.com/dev/signin", {method:"POST", body:form})
+.then(function(res) {console.log(res); return res.json()})
+.then(function(res) {console.log(res); return JSON.stringify(res.Item)})
+.then(function(res) {if (res) setCookie('Amazoff', res, 30); return res})
+.then(function(res) {if (res) document.location.reload(true); return res})
+.then(function(res) {if (!res) alert("t\'as du te tromper sur un des champs je crois")})
+}
+
 </script>
 </html>
