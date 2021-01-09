@@ -19,7 +19,7 @@
 			padding: 0;
 
 		}
-		
+
 		.formholder
 		{
 			width: 500px;
@@ -90,7 +90,7 @@
 		}
 
 
-				.navbar
+		.navbar
 		{
 			background: #232f3e;
 			height: 100px;
@@ -99,6 +99,20 @@
 		}
 
 
+		.connected
+		{
+			margin: 150px;
+			border: solid;
+			border-radius: 10px;
+		}
+
+		#coed
+		{
+			text-align: center;
+			font-size: 20px;
+			margin: 35px 0;
+		}
+
 	</style>
 </head>
 <body onload="renderProfile()">
@@ -106,8 +120,10 @@
 		<div id="top" class="navbar">
 		<div style="content: url(https://play-lh.googleusercontent.com/A0j5qdwpBP_9oYMX3TGbghtBQKGqjjWpBHwiX1k95zU33RxOJo8ZfqGFuuI2zJOtFwA); height: 100%; cursor: pointer;" onclick="goto('index.html');"></div>
 
-		<div id="Profilesection">
+		<div></div>
 
+		<div style="cursor: pointer; border: solid;" id="Profilesection" onclick="goto('signinup.html')">
+			<p id="coed" style="cursor: pointer; color: white;">Sign-in</p>
 		</div>
 	</div>
 
@@ -122,6 +138,7 @@
 
 	var me = getCookie('Amazoff');
 	if (me != "" && me != "undefined") {me = JSON.parse(me);} 
+	if (me != "" && me != "undefined") document.getElementById('coed').innerHTML = me.accname.S
 
 
 	class Connected extends React.Component
@@ -134,7 +151,7 @@
 				<p style={{textAlign: "left", fontSize: "1.5em", borderBottom: "1px solid red"}} id="accname">accname : {me["accname"].S}</p>
 				<p style={{textAlign: "left", fontSize: "1.5em", borderBottom: "1px solid red"}} id="email">email : {me["email"].S}</p>
 				<p style={{textAlign: "left", fontSize: "1.5em", borderBottom: "1px solid red"}} id="address">address : {me["address"].S}</p>
-				<p style={{textAlign: "left", fontSize: "1.5em", borderBottom: "1px solid red"}} id="coins">coins : {me["coins"].N}</p>
+				<p style={{textAlign: "left", fontSize: "1.5em", borderBottom: "1px solid red"}} id="coins">thune : {me["coins"].N/100}.{me["coins"].N%100}€</p>
 				<br></br>
 				<button onClick={() => logout()} style={{color:"white", padding:"10px", borderRadius:"10px", margin: "auto", display:"block", backgroundColor:"#3f0d12", backgroundImage: "linear-gradient(315deg, #3f0d12 0%, #a71d31 74%)"}}>Log-out</button>
 				<br></br>
@@ -308,6 +325,11 @@ fetch("https://55dald7ea1.execute-api.eu-west-3.amazonaws.com/dev/signin", {meth
 .then(function(res) {if (res) document.location.reload(true); return res})
 .then(function(res) {if (!res) alert("t\'as du te tromper sur un des champs je crois")})
 }
+
+function goto(where) {
+	window.location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/')+1) + where
+}
+
 
 </script>
 </html>
