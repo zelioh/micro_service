@@ -3,7 +3,7 @@ class Navbar extends React.Component
     render()
     {
         return (
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg">
                 <h1 class="navbar-brand">AMAZOFF</h1>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -14,7 +14,7 @@ class Navbar extends React.Component
                             <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">catégorie</a>
+                            <a class="nav-link" href="/account.html">compte</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -42,15 +42,15 @@ class Body extends React.Component
 {
     render()
     {
-        var rand = Math.floor(Math.random() * 1000);
+        var link = "/itm.html?v=" + this.props.id;
         return (
             <div class="card mb-4">
-                <img class="card-img-top" src={"https://picsum.photos/id/" + rand + "/200/200"} alt="Card image cap"></img>
+                <img class="card-img-top" src={this.props.thumbnail} alt="Card image cap"></img>
                 <div class="card-body">
-                    <h5 class="card-title">{this.props.id}​​</h5>
-                    <p class="card-text">bla bla bla</p>
+                    <h5 class="card-title">{this.props.name}​​</h5>
+                    <p class="card-text"><strong>Prix : </strong>{this.props.price}</p>
                     <div class="d-flex justify-content-around align-items-center">
-                        <button type="button" class="btn btn-outline-primary" data-toggle="" data-target="#">ACHETER</button>
+                        <a class="btn btn-outline-primary" href={link}>ACHETER</a>
                     </div>
                 </div>
             </div>
@@ -151,20 +151,22 @@ function loadNavbar() {
 
 function loadBody(f) {
 
-    for (var i = 0; i < 4; i++) {
-        var tmp = document.createElement("div");
-        tmp.id = i;
-        tmp.classList.add('col-md-4');
-        document.getElementById('body').appendChild(tmp)
-    }
-
-    for (var z = 0; z < 4; z++) {
-        ReactDOM.render(
-            <Body id={z}/>,
-            document.getElementById(z)
-            );            
-    }
-
+    fetch('https://55dald7ea1.execute-api.eu-west-3.amazonaws.com/dev/get-articles')
+    .then(response => response.json())
+    .then((json) => {
+        for (var i = 0; i < json.length; i++) {
+            var tmp = document.createElement("div");
+            tmp.id = i;
+            tmp.classList.add('col-md-4');
+            document.getElementById('body').appendChild(tmp)
+        }
+        for (var z = 0; z < json.length; z++) {
+            ReactDOM.render(
+                <Body id={z} name={json[z].Name} price={json[z].Price} thumbnail={json[z].Thumbnail}/>,
+                document.getElementById(z)
+                );            
+        }
+    });
 }
 
 function loadFooter() {
