@@ -162,9 +162,8 @@ function loadFooter() {
         );
 }
 
+function moveto(where) {
+    window.location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/')) + where
+}
 
-        
-
-        function moveto(where) {
-            window.location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/')) + where
-        }
+ol();
