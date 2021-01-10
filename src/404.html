@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="icon" href="https://play-lh.googleusercontent.com/A0j5qdwpBP_9oYMX3TGbghtBQKGqjjWpBHwiX1k95zU33RxOJo8ZfqGFuuI2zJOtFwA" >
+	
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Amazoff page non trouvée</title>
+	<style>
+		#b,#e,#f{height:35px}#b,#f{position:absolute}body,html{padding:0;margin:0}body{color:#6C7778;font-family:Helvetica;font-weight:lighter}img{border:0;max-width:90%}a{text-decoration-line:none;color:#0099D9}input,input::-webkit-input-placeholder{font-size:16px}#a{background:#232f3e;padding:11px 11px 11px 192px}#b{left:22px;top:12px;width:auto}#c{width:85%;position:relative;padding:0 40px 0 0}#d{margin-top:15px}#e,#f{border:0}#e{width:100%;margin:0;padding:0 10px;border-radius:4px 0 0 4px}#f{cursor:pointer;background:#febd69;border-radius:0 4px 4px 0;-webkit-appearance:none;top:0;right:0;padding:0 12px}#g{text-align:center;margin:30px 0}#h{font-size:5em}#i{font-size:3em;line-height:1em}#j,#n{font-size:1.5em}#h,#i,#j{margin:10px 0}#n,#o{width:60%;margin:auto;text-align:left}#n{margin-top:30px}@media(max-width:500px){#a{padding:55px 10px 10px}#b{left:6px}#h{font-size:3em}#i{font-size:1.5em}#j,#n{font-size:1em}#n,#o{width:90%}}
+
+
+		.navbar
+		{
+			background: #232f3e;
+			height: 100px;
+			display: grid;
+			grid-template-columns: 1fr 4fr 1fr;
+		}
+
+
+		#coed
+		{
+			text-align: center;
+			font-size: 20px;
+			margin: 35px 0;
+		}
+
+
+	</style>
+</head>
+<body class="vsc-initialized">
+	
+
+	<div id="top" class="navbar">
+		<div style="content: url(https://play-lh.googleusercontent.com/A0j5qdwpBP_9oYMX3TGbghtBQKGqjjWpBHwiX1k95zU33RxOJo8ZfqGFuuI2zJOtFwA); height: 100%; cursor: pointer;" onclick="goto('index.html');"></div>
+
+		<div></div>
+
+		<div style="cursor: pointer; border: solid;" id="Profilesection" onclick="goto('signinup.html')">
+			<p id="coed" style="cursor: pointer; color: white;">Sign-in</p>
+		</div>
+	</div>
+
+
+
+	<div id="g">
+		<div id="o">
+			<div id="h">DÉSOLÉ</div>
+			<div id="i">cette page n’existe pas (plus).</div>
+			<div id="j">Reformulez votre recherche ou allez sur <a href="./index.html">la page d’accueil d’Amazoff</a>.</div>
+		</div>
+		<a id="l" href="./405.html" target="_blank">
+			<img id="d" alt="bark bark !!" src="">
+			<div id="n">Profitez-en pour faire connaissance avec les bons gros chiens d’Amazoff (*bark bark*)</div>
+		</a>
+	</div>
+	<script>
+		var me = getCookie('Amazoff');
+		if (me != "" && me != "undefined") {me = JSON.parse(me);} 
+		if (me != "" && me != "undefined") document.getElementById('coed').innerHTML = me.accname.S
+
+
+		function goto(where) {
+			window.location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/')+1) + where
+		}
+
+
+		function getCookie(cname) {
+			var name = cname + "=";
+			var ca = document.cookie.split(';');
+			for(var i = 0; i < ca.length; i++) {
+				var c = ca[i];
+				while (c.charAt(0) == ' ') {
+					c = c.substring(1);
+				}
+				if (c.indexOf(name) == 0) {
+					return c.substring(name.length, c.length);
+				}
+			}
+			return "";
+		}
+
+		document.getElementById("d").src="https://m.media-amazon.com/images/G/02/error/"+(Math.floor(Math.random()*43)+1)+".-TTD-c.jpg";
+	</script>
+
+
+<a class="hss-abp-subscribe" href="abp:subscribe?location=https://www.joinhoney.com/whitelist/honey-smart-shopping.txt&amp;title=Honey-Smart-Shopping" style="position: fixed; display: block; opacity: 0; z-index: 2147483647;"></a></body></html>

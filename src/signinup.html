@@ -113,11 +113,20 @@
 			margin: 35px 0;
 		}
 
+		h2
+		{
+			border: solid;
+			border-color: lime;
+			font-size: 1em;
+			padding: 5px;
+			margin: 5px;
+		}
+
 	</style>
 </head>
 <body onload="renderProfile()">
 
-		<div id="top" class="navbar">
+	<div id="top" class="navbar">
 		<div style="content: url(https://play-lh.googleusercontent.com/A0j5qdwpBP_9oYMX3TGbghtBQKGqjjWpBHwiX1k95zU33RxOJo8ZfqGFuuI2zJOtFwA); height: 100%; cursor: pointer;" onclick="goto('index.html');"></div>
 
 		<div></div>
@@ -136,37 +145,38 @@
 </body>
 <script type="text/babel">
 
-	var me = getCookie('Amazoff');
-	if (me != "" && me != "undefined") {me = JSON.parse(me);} 
-	if (me != "" && me != "undefined") document.getElementById('coed').innerHTML = me.accname.S
+		var me = getCookie('Amazoff');
+		if (me != "" && me != "undefined") {me = JSON.parse(me);} 
+		if (me != "" && me != "undefined") document.getElementById('coed').innerHTML = me.accname.S
 
-
-	class Connected extends React.Component
-	{
-
-		render() 
+			class Connected extends React.Component
 		{
-			return (
-			<div className="connected">
-				<p style={{textAlign: "left", fontSize: "1.5em", borderBottom: "1px solid red"}} id="accname">accname : {me["accname"].S}</p>
-				<p style={{textAlign: "left", fontSize: "1.5em", borderBottom: "1px solid red"}} id="email">email : {me["email"].S}</p>
-				<p style={{textAlign: "left", fontSize: "1.5em", borderBottom: "1px solid red"}} id="address">address : {me["address"].S}</p>
-				<p style={{textAlign: "left", fontSize: "1.5em", borderBottom: "1px solid red"}} id="coins">thune : {me["coins"].N/100}.{me["coins"].N%100}€</p>
-				<br></br>
-				<button onClick={() => logout()} style={{color:"white", padding:"10px", borderRadius:"10px", margin: "auto", display:"block", backgroundColor:"#3f0d12", backgroundImage: "linear-gradient(315deg, #3f0d12 0%, #a71d31 74%)"}}>Log-out</button>
-				<br></br>
-			</div>			
-			);
+
+			render() 
+			{
+				return (
+					<div className="connected">
+					<p style={{textAlign: "left", fontSize: "1.5em", borderBottom: "1px solid red"}} id="accname">accname : {me["accname"].S}</p>
+					<p style={{textAlign: "left", fontSize: "1.5em", borderBottom: "1px solid red"}} id="email">email : {me["email"].S}</p>
+					<p style={{textAlign: "left", fontSize: "1.5em", borderBottom: "1px solid red"}} id="address">address : {me["address"].S}</p>
+					<p style={{textAlign: "left", fontSize: "1.5em", borderBottom: "1px solid red"}} id="coins">thune : {me["coins"].N/100}€</p>
+					<br></br>
+					<button onClick={() => logout()} style={{color:"white", padding:"10px", borderRadius:"10px", margin: "auto", display:"block", backgroundColor:"#3f0d12", backgroundImage: "linear-gradient(315deg, #3f0d12 0%, #a71d31 74%)"}}>Log-out</button>
+					<br></br>
+
+					<div id="boughtholder"></div>
+					</div>			
+					);
+			}
 		}
-	}
 
-	class Profile extends React.Component
-	{
-		render() 
+		class Profile extends React.Component
 		{
-			return (
-			<div>
-				<div id="formholder" className="formholder">
+			render() 
+			{
+				return (
+					<div>
+					<div id="formholder" className="formholder">
 					<p id="frontp1">Log In</p>
 					<input type="text" id="frontemail" class="profinput" placeholder="Email"/>
 					<input type="password" id="frontpassword" class="profinput" placeholder="Password"/>
@@ -187,149 +197,181 @@
 					<button onClick={() => flip("front")} id="backb1" className="formbtn" style={{float: "left", display:"none"}}>Log-in</button>
 					<button onClick={() => signup("back")} id="backb2" className="formbtn" style={{float: "right", display:"none"}}>Sign-up</button>
 
-				</div>
-			</div>			
-			);
+					</div>
+					</div>			
+					);
+			}
 		}
-	}
 
 
 
-	function flip(toface) {
-	document.getElementById('formholder').className += " rotacache";
-	setTimeout(function(){ 
+		function flip(toface) {
+			document.getElementById('formholder').className += " rotacache";
+			setTimeout(function(){ 
 
-	if (toface == 'front') {
-	document.getElementById('frontpassword').style.display = 'block';
-	document.getElementById('frontemail').style.display = 'block';
-	document.getElementById('frontp1').style.display = 'block';
-	document.getElementById('frontb1').style.display = 'block';
-	document.getElementById('frontb2').style.display = 'block';
-	document.getElementById('frontp2').style.display = 'block';
+				if (toface == 'front') {
+					document.getElementById('frontpassword').style.display = 'block';
+					document.getElementById('frontemail').style.display = 'block';
+					document.getElementById('frontp1').style.display = 'block';
+					document.getElementById('frontb1').style.display = 'block';
+					document.getElementById('frontb2').style.display = 'block';
+					document.getElementById('frontp2').style.display = 'block';
 
-	document.getElementById('backemail').style.display = 'none';
-	document.getElementById('backpass1').style.display = 'none';
-	document.getElementById('backpass2').style.display = 'none';
-	document.getElementById('backaddress').style.display = 'none';
-	document.getElementById('backan').style.display = 'none';
-	document.getElementById('backb1').style.display = 'none';
-	document.getElementById('backb2').style.display = 'none';
-	document.getElementById('backp').style.display = 'none';
-}
+					document.getElementById('backemail').style.display = 'none';
+					document.getElementById('backpass1').style.display = 'none';
+					document.getElementById('backpass2').style.display = 'none';
+					document.getElementById('backaddress').style.display = 'none';
+					document.getElementById('backan').style.display = 'none';
+					document.getElementById('backb1').style.display = 'none';
+					document.getElementById('backb2').style.display = 'none';
+					document.getElementById('backp').style.display = 'none';
+				}
 
-if (toface == 'back') {
-document.getElementById('frontpassword').style.display = 'none';
-document.getElementById('frontemail').style.display = 'none';
-document.getElementById('frontp1').style.display = 'none';
-document.getElementById('frontb1').style.display = 'none';
-document.getElementById('frontb2').style.display = 'none';
-document.getElementById('frontp2').style.display = 'none';
+				if (toface == 'back') {
+					document.getElementById('frontpassword').style.display = 'none';
+					document.getElementById('frontemail').style.display = 'none';
+					document.getElementById('frontp1').style.display = 'none';
+					document.getElementById('frontb1').style.display = 'none';
+					document.getElementById('frontb2').style.display = 'none';
+					document.getElementById('frontp2').style.display = 'none';
 
-document.getElementById('backemail').style.display = 'block';
-document.getElementById('backpass1').style.display = 'block';
-document.getElementById('backpass2').style.display = 'block';
-document.getElementById('backaddress').style.display = 'block';
-document.getElementById('backan').style.display = 'block';
-document.getElementById('backb1').style.display = 'block';
-document.getElementById('backb2').style.display = 'block';
-document.getElementById('backp').style.display = 'block';
-}
+					document.getElementById('backemail').style.display = 'block';
+					document.getElementById('backpass1').style.display = 'block';
+					document.getElementById('backpass2').style.display = 'block';
+					document.getElementById('backaddress').style.display = 'block';
+					document.getElementById('backan').style.display = 'block';
+					document.getElementById('backb1').style.display = 'block';
+					document.getElementById('backb2').style.display = 'block';
+					document.getElementById('backp').style.display = 'block';
+				}
 
-document.getElementById('formholder').className = document.getElementById('formholder').className.replace(' rotacache',''); 
-}, 500);
+				document.getElementById('formholder').className = document.getElementById('formholder').className.replace(' rotacache',''); 
+			}, 500);
 
-}
-
-
-function renderProfile(argument) {
-if (me == "")
-ReactDOM.render(<Profile />,document.getElementById('Profile_Section'));
-else
-ReactDOM.render(<Connected />,document.getElementById('Profile_Section'));
-}
+		}
 
 
+		function renderProfile(argument) {
+			if (me == "")
+				ReactDOM.render(<Profile />,document.getElementById('Profile_Section'));
+			else {
+				var payload = {'password' : me.password.S,'email' : me.email.S};
+				var form = JSON.stringify(payload);
 
-function setCookie(cname, cvalue, exdays) {
-var d = new Date();
-d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-var expires = "expires="+d.toUTCString();
-document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-function getCookie(cname) {
-var name = cname + "=";
-var ca = document.cookie.split(';');
-for(var i = 0; i < ca.length; i++) {
-var c = ca[i];
-while (c.charAt(0) == ' ') {
-c = c.substring(1);
-}
-if (c.indexOf(name) == 0) {
-return c.substring(name.length, c.length);
-}
-}
-return "";
-}
-
-function logout() {
-setCookie('Amazoff', "", 0);
-document.location.reload(true);
-}
+				fetch("https://55dald7ea1.execute-api.eu-west-3.amazonaws.com/dev/signin", {method:"POST", body:form})
+				.then(function(res) {return res.json()})
+				.then(function(res) {return JSON.stringify(res.Item)})
+				.then(function(res) {if (res) setCookie('Amazoff', res, 30); return res})
+				.then(function(res) {if(res)ReactDOM.render(<Connected />,document.getElementById('Profile_Section'));renderbought();})
+			}
+		}
 
 
-function signup() {
-var email = document.getElementById('backemail').value;
-var pass1 = document.getElementById('backpass1').value;
-var pass2 = document.getElementById('backpass2').value;
-var an = document.getElementById('backan').value;
-var address = document.getElementById('backaddress').value;
+		function setCookie(cname, cvalue, exdays) {
+			var d = new Date();
+			d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+			var expires = "expires="+d.toUTCString();
+			document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+		}
 
-if (email == "" || pass1 == "" || pass2 == "" || an == "" || address == "")
-return alert("remplis tous les champs stp")
+		function getCookie(cname) {
+			var name = cname + "=";
+			var ca = document.cookie.split(';');
+			for(var i = 0; i < ca.length; i++) {
+				var c = ca[i];
+				while (c.charAt(0) == ' ') {
+					c = c.substring(1);
+				}
+				if (c.indexOf(name) == 0) {
+					return c.substring(name.length, c.length);
+				}
+			}
+			return "";
+		}
 
-if (pass1 != pass2)
-return alert("tu sais que les 2 champs Password sont censés être les memes hein?")
-
-console.log(email,pass1,pass2,an,address);
-
-var payload = {
-'email' : email,
-'pass' : pass1,
-'an' : an,
-'address' : address,
-};
-var form = JSON.stringify(payload);
-
-fetch("https://55dald7ea1.execute-api.eu-west-3.amazonaws.com/dev/signup", {method:"POST", body:form})
-.then(function(res) {console.log(res); return res.json();})
-.then(function(res) {console.log(res); if (res == "email_taken") {alert("j\'crois que t\'as deja un compte, ou alors quelqu\'un d\'autre utilise ton email (et ca c\'est chaud)")} else {setCookie('Amazoff', JSON.stringify(res), 30);document.location.reload(true)} })
-}
-
-function login() {
-var password = document.getElementById('frontpassword').value;
-var email = document.getElementById('frontemail').value;
-
-console.log(password,email);
-
-var payload = {
-'password' : password,
-'email' : email,
-};
-var form = JSON.stringify(payload);
-
-fetch("https://55dald7ea1.execute-api.eu-west-3.amazonaws.com/dev/signin", {method:"POST", body:form})
-.then(function(res) {console.log(res); return res.json()})
-.then(function(res) {console.log(res); return JSON.stringify(res.Item)})
-.then(function(res) {if (res) setCookie('Amazoff', res, 30); return res})
-.then(function(res) {if (res) document.location.reload(true); return res})
-.then(function(res) {if (!res) alert("t\'as du te tromper sur un des champs je crois")})
-}
-
-function goto(where) {
-	window.location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/')+1) + where
-}
+		function logout() {
+			setCookie('Amazoff', "", 0);
+			document.location.reload(true);
+		}
 
 
-</script>
-</html>
+		function signup() {
+			var email = document.getElementById('backemail').value;
+			var pass1 = document.getElementById('backpass1').value;
+			var pass2 = document.getElementById('backpass2').value;
+			var an = document.getElementById('backan').value;
+			var address = document.getElementById('backaddress').value;
+
+			if (email == "" || pass1 == "" || pass2 == "" || an == "" || address == "")
+				return alert("remplis tous les champs stp")
+
+			if (pass1 != pass2)
+				return alert("tu sais que les 2 champs Password sont censés être les memes hein?")
+
+
+			var payload = {
+				'email' : email,
+				'pass' : pass1,
+				'an' : an,
+				'address' : address,
+			};
+			var form = JSON.stringify(payload);
+
+			fetch("https://55dald7ea1.execute-api.eu-west-3.amazonaws.com/dev/signup", {method:"POST", body:form})
+			.then(function(res) {return res.json();})
+			.then(function(res) {if (res == "email_taken") {alert("j\'crois que t\'as deja un compte, ou alors quelqu\'un d\'autre utilise ton email (et ca c\'est chaud)")} else {setCookie('Amazoff', JSON.stringify(res), 30);document.location.reload(true)} })
+		}
+
+		function login() {
+			var password = document.getElementById('frontpassword').value;
+			var email = document.getElementById('frontemail').value;
+
+
+			var payload = {
+				'password' : password,
+				'email' : email,
+			};
+			var form = JSON.stringify(payload);
+
+			fetch("https://55dald7ea1.execute-api.eu-west-3.amazonaws.com/dev/signin", {method:"POST", body:form})
+			.then(function(res) {return res.json()})
+			.then(function(res) {return JSON.stringify(res.Item)})
+			.then(function(res) {if (res) setCookie('Amazoff', res, 30); return res})
+			.then(function(res) {if (res) document.location.reload(true); return res})
+			.then(function(res) {if (!res) alert("t\'as du te tromper sur un des champs je crois")})
+		}
+
+		function goto(where) {
+			window.location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/')+1) + where
+		}
+
+
+		function renderbought() {
+			for (var i = 0; i < me.bought.L.length; i++) {
+				recbought(me.bought.L[i].M.when.N, me.bought.L[i].M.what.S)
+			}
+		}
+
+		function recbought(d, iid) {
+			fetch('https://55dald7ea1.execute-api.eu-west-3.amazonaws.com/dev/get-article?v='+iid)
+					.then(r => r.json())
+					.then(function(rj) {
+						var td = new Date( parseInt(d));
+						var itmhldr = document.createElement("h2");
+						itmhldr.innerHTML = rj.Name.substring(0, 25);
+						if (rj.Name.length > 25) {itmhldr.innerHTML += "..."}
+						itmhldr.innerHTML += "&nbsp;&nbsp;&nbsp;"
+						itmhldr.innerHTML += rj.Price/100 + "€";
+						itmhldr.innerHTML += "</br>"
+						const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(td);
+						const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(td);
+						const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(td);
+						itmhldr.innerHTML += `${da}-${mo}-${ye}`
+
+						document.getElementById('boughtholder').appendChild(itmhldr);
+			})
+
+		}
+
+	</script>
+	</html>
