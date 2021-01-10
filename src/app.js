@@ -4,28 +4,14 @@ class Navbar extends React.Component
     {
         return (
             <nav class="navbar navbar-expand-lg">
-                <h1 class="navbar-brand">AMAZOFF</h1>
+                <h1 onClick={() => document.location.reload()}  style={{cursor: "pointer"}} class="navbar-brand">AMAZOFF</h1>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
-                        </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/account.html">compte</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Catégorie
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Musique</a>
-                            <a class="dropdown-item" href="#">Cuisine</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">( ͡° ͜ʖ ͡°)</a>
-                            </div>
+                            <a class="nav-link" href="/signinup.html">compte</a>
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
@@ -42,9 +28,9 @@ class Body extends React.Component
 {
     render()
     {
-        var link = "/itm.html?v=" + this.props.id;
+        var link = "/itm.html?v=" + this.props.id+1;
         return (
-            <div class="card mb-4">
+            <div id={this.props.name} class="card mb-4" onClick={() => moveto(link)}>
                 <img class="card-img-top" src={this.props.thumbnail} alt="Card image cap"></img>
                 <div class="card-body">
                     <h5 class="card-title">{this.props.name}​​</h5>
@@ -157,12 +143,12 @@ function loadBody(f) {
         for (var i = 0; i < json.length; i++) {
             var tmp = document.createElement("div");
             tmp.id = i;
-            tmp.classList.add('col-md-4');
+            tmp.classList.add('col-md');
             document.getElementById('body').appendChild(tmp)
         }
         for (var z = 0; z < json.length; z++) {
             ReactDOM.render(
-                <Body id={z} name={json[z].Name} price={json[z].Price} thumbnail={json[z].Thumbnail}/>,
+                <Body id={z} name={json[z].Name} price={json[z].Price/100} thumbnail={json[z].Thumbnail}/>,
                 document.getElementById(z)
                 );            
         }
@@ -175,3 +161,10 @@ function loadFooter() {
         document.getElementById('footer')
         );
 }
+
+
+        
+
+        function moveto(where) {
+            window.location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/')) + where
+        }
