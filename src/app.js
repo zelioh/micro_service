@@ -28,13 +28,13 @@ class Body extends React.Component
 {
     render()
     {
-        var link = "/itm.html?v=" + this.props.id+1;
+        var link = "/itm.html?v=" + this.props.id;
         return (
             <div id={this.props.name} class="card mb-4" onClick={() => moveto(link)}>
                 <img class="card-img-top" src={this.props.thumbnail} alt="Card image cap"></img>
                 <div class="card-body">
                     <h5 class="card-title">{this.props.name}​​</h5>
-                    <p class="card-text"><strong>Prix : </strong>{this.props.price}</p>
+                    <p class="card-text"><strong>Prix : </strong>{this.props.price} €</p>
                     <div class="d-flex justify-content-around align-items-center">
                         <a class="btn btn-outline-primary" href={link}>ACHETER</a>
                     </div>
@@ -143,12 +143,12 @@ function loadBody(f) {
         for (var i = 0; i < json.length; i++) {
             var tmp = document.createElement("div");
             tmp.id = i;
-            tmp.classList.add('col-md');
+            tmp.classList.add('col-md-4');
             document.getElementById('body').appendChild(tmp)
         }
         for (var z = 0; z < json.length; z++) {
             ReactDOM.render(
-                <Body id={z} name={json[z].Name} price={json[z].Price/100} thumbnail={json[z].Thumbnail}/>,
+                <Body id={json[z].id} name={json[z].Name} price={json[z].Price/100} thumbnail={json[z].Thumbnail}/>,
                 document.getElementById(z)
                 );            
         }
