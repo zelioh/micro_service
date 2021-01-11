@@ -1,36 +1,72 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MicroService</title>
+    <title>Amazoff</title>
+    <link rel="icon" href="https://play-lh.googleusercontent.com/A0j5qdwpBP_9oYMX3TGbghtBQKGqjjWpBHwiX1k95zU33RxOJo8ZfqGFuuI2zJOtFwA" >
 
-    <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-
-    <!-- babel -->
-    <!--
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js" integrity="sha512-kp7YHLxuJDJcOzStgd6vtpxr4ZU9kjn77e6dBsivSz+pUuAuMlE2UTdKB7jjsWT84qbS8kdCWHPETnP/ctrFsA==" crossorigin="anonymous"></script>
-    -->
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <!-- react -->
     <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js" ></script>
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
 
-    <script data-plugins="transform-es2015-modules-umd" type="text/babel" src="js/app.js" defer></script>
-    <script data-plugins="transform-es2015-modules-umd" type="text/babel">
-        import {Head} from 'js/app';
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
 
-        $(document).ready(() => {
-            if (document.getElementById('root')) {
-                ReactDOM.render(
-                    <Head/>,
-                    document.getElementById('root')
-                );
-            }
-        });
-    </script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+   
+
+    <link rel="stylesheet" href="footer.css"></link>
+
+    <style type="text/css">
+        #navbar {
+        background: linear-gradient(59deg, #3A6073, #16222A);
+        color: white;
+        }
+        #navbar a {
+            color: #fff;
+            font-size: 14px;
+            transition-duration: 0.2s;
+        }
+        #navbar a:hover {
+            color: #FA944B;
+            text-decoration: none;
+        }
+        .dropdown-menu {
+            background: linear-gradient(59deg, #3A6073, #325f76);;
+        }
+        .card img {
+            max-height: 350px;
+        }
+        .card h5 {
+            min-height: 150px;
+        }
+        .card {
+            cursor: pointer;
+        }
+    </style>
+    
 </head>
 <body>
-    <h1>hello micro_service</h1>
-    <div id="root"></div>
+    <div id="navbar"></div>
+    <div class="album py-5">
+        <div class="container">
+            <div class="row" id="body">
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
 </body>
+    <script type="text/babel" src="app.js"></script>
 </html>
