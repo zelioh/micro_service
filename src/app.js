@@ -11,7 +11,7 @@ class Navbar extends React.Component
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/index.html">Accueil <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/account.html">compte</a>
@@ -48,7 +48,7 @@ class Body extends React.Component
                 <img class="card-img-top" src={this.props.thumbnail} alt="Card image cap"></img>
                 <div class="card-body">
                     <h5 class="card-title">{this.props.name}​​</h5>
-                    <p class="card-text"><strong>Prix : </strong>{this.props.price}</p>
+                    <p class="card-text"><strong>Prix : </strong>{this.props.price/100}</p>
                     <div class="d-flex justify-content-around align-items-center">
                         <a class="btn btn-outline-primary" href={link}>ACHETER</a>
                     </div>
@@ -73,12 +73,11 @@ class Footer extends React.Component
                         <div class="footer-pad">
                         <h4>Paiement</h4>
                         <ul class="list-unstyled">
-                            <li><a href="#"></a></li>
-                            <li><a href="#">On</a></li>
-                            <li><a href="#">Aime</a></li>
-                            <li><a href="#">Vraiment</a></li>
-                            <li><a href="#">Beaucoup</a></li>
-                            <li><a href="#">L'argent</a></li>
+                            <li><a href="#">PayPal</a></li>
+                            <li><a href="#">Carte Bleue</a></li>
+                            <li><a href="#">Codes</a></li>
+                            <li><a href="#">Cryptomonnaies</a></li>
+                            <li><a href="#">Autre</a></li>
                         </ul>
                         </div>
                     </div>
@@ -91,7 +90,6 @@ class Footer extends React.Component
                             <li><a href="#">Accessibilité</a></li>
                             <li><a href="#">Mentions légales</a></li>
                             <li><a href="#">Vos données</a></li>
-                            <li><a href="#">Nos ÉNORMES talents</a></li>
                             <li><a href="#">Nous contacter</a></li>
                         </ul>
                         </div>
@@ -99,11 +97,11 @@ class Footer extends React.Component
                     <div class="col-md-3 col-sm-6">
 
                         <div class="footer-pad">
-                        <h4>Oui</h4>
+                        <h4>Partenaires</h4>
                         <ul class="list-unstyled">
-                            <li><a href="#">Certes</a></li>
-                            <li><a href="#">Bien</a></li>
-                            <li><a href="#">D'accord</a></li>
+                            <li><a href="#">Uno</a></li>
+                            <li><a href="#">Audio Technica</a></li>
+                            <li><a href="#">Hasmodee</a></li>
                             <li>
                             <a href="#"></a>
                             </li>
@@ -136,10 +134,18 @@ class Footer extends React.Component
 }
 
 function ol(argument) {
+    console.log("loading components");
     loadNavbar();
-
     loadBody();  
     loadFooter();
+    console.log("components loaded");
+}
+
+function navfoo(argument) {
+    console.log("loading components");
+    loadNavbar();
+    loadFooter();
+    console.log("components loaded");
 }
 
 function loadNavbar() {

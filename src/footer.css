@@ -1,4 +1,29 @@
 
+/* NAVBAR */
+
+#navbar {
+    background: linear-gradient(59deg, #3A6073, #16222A);
+    color: white;
+}
+#navbar a {
+    color: #fff;
+    font-size: 14px;
+    transition-duration: 0.2s;
+}
+#navbar a:hover {
+    color: #FA944B;
+    text-decoration: none;
+}
+.dropdown-menu {
+    background: linear-gradient(59deg, #3A6073, #325f76);;
+}
+.card img {
+    max-height: 350px;
+}
+.card h5 {
+    min-height: 150px;
+}
+
 /*FOOTER*/
 
 footer {
